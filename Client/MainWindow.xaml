@@ -1,0 +1,415 @@
+﻿<Window x:Class="Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client"
+        mc:Ignorable="d"
+        Title="Game" Height="600" Width="900" ResizeMode="NoResize" Icon="Images\Wolf.png" Closing="Window_Closing">
+    <Window.Resources>
+        <Style x:Key="imgStyle" TargetType="Image">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Source" Value="Images\WolfRavenH.png" />
+                </Trigger>
+                
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Opacity" Value="0.2" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <PathGeometry x:Key="path">
+            <PathFigure IsClosed="True">
+                <ArcSegment Point="100,400" Size="55,20" SweepDirection="Clockwise" />
+                <ArcSegment Point="600,50" Size="5,5" />
+            </PathFigure>
+        </PathGeometry>
+
+        <PathGeometry x:Key="path1">
+            <PathFigure IsClosed="True">
+                <ArcSegment Point="50,200" Size="15,10" />
+                <ArcSegment Point="100,400" Size="5,15" />
+                <ArcSegment Point="200,100" Size="5,20" />
+                <ArcSegment Point="700,200" Size="5,5" />
+            </PathFigure>
+        </PathGeometry>
+
+        <PathGeometry x:Key="path2">
+            <PathFigure IsClosed="True">
+                <ArcSegment Point="700,200" Size="15,10" />
+                <ArcSegment Point="100,200" Size="5,5" />
+                <ArcSegment Point="100,200" Size="5,15" />
+
+            </PathFigure>
+        </PathGeometry>
+
+        <Style x:Key="WinDrawBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="Blue" />
+            <Setter Property="Background" Value="WhiteSmoke" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="Opacity" Value="0.5" />
+            <Setter Property="Height" Value="90" />
+            <Setter Property="Width" Value="190" />
+
+            <Style.Triggers>
+                <Trigger Property="Border.IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="WhiteSmoke" />
+                    <Setter Property="CornerRadius" Value="10" />
+                    <Setter Property="Background" Value="#FF2887D6" />
+                    <Setter Property="BorderThickness" Value="2" />
+                </Trigger>
+
+                <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="Height" To="110" />
+                                <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="Opacity" To="1" />
+                                <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="Width" To="260" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="Height" />
+                                <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="Width" />
+                                <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="Opacity" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="WinDrawText" TargetType="Label">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Width" Value="190" />
+            <Setter Property="Height" Value="90" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="#FF2887D6" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+
+            <Style.Triggers>
+                <Trigger Property="Label.IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="WhiteSmoke" />
+                    <Setter Property="Background" Value="#FF2887D6" />
+                    <Setter Property="FontStyle" Value="Italic" />
+                </Trigger>
+
+                <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="FontSize" To="20" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="FontSize" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Name="grMain">
+        <Grid.Background>
+            <ImageBrush ImageSource="Images\Load.jpg" />
+        </Grid.Background>
+        
+        <Grid Name="grStart">
+            <Grid.Background>
+                <ImageBrush ImageSource="Images\Start.jpg" />
+            </Grid.Background>
+
+            <Border Style="{DynamicResource WinDrawBorder}" MouseDown="Border_MouseDown">
+                <Label Style="{DynamicResource WinDrawText}">Start</Label>
+            </Border>
+
+            <Canvas Width="900" Height="600">
+                <Ellipse Canvas.Left="10" Canvas.Top="10" Height="15" Width="15" Name="run">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                            <GradientStop Color="Orange" Offset="0" />
+                            <GradientStop Color="Yellow" Offset="0.2" />
+                            <GradientStop Color="Transparent" Offset="1" />
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                    <Ellipse.Triggers>
+                        <EventTrigger RoutedEvent="Ellipse.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="run" Storyboard.TargetProperty="(Canvas.Left)" PathGeometry="{StaticResource ResourceKey=path}" Duration="0:0:15" RepeatBehavior="Forever" Source="X" />
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="run" Storyboard.TargetProperty="(Canvas.Top)" PathGeometry="{StaticResource ResourceKey=path}" Duration="0:0:10" RepeatBehavior="Forever" Source="Y" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Ellipse.Triggers>
+                </Ellipse>
+
+                <Ellipse Canvas.Left="10" Canvas.Top="10" Height="15" Width="15" Name="run1">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                            <GradientStop Color="Blue" Offset="0" />
+                            <GradientStop Color="Aqua" Offset="0.2" />
+                            <GradientStop Color="Transparent" Offset="1" />
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                    <Ellipse.Triggers>
+                        <EventTrigger RoutedEvent="Ellipse.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="run1" Storyboard.TargetProperty="(Canvas.Left)" PathGeometry="{StaticResource ResourceKey=path1}" Duration="0:0:15" RepeatBehavior="Forever" Source="X" />
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="run1" Storyboard.TargetProperty="(Canvas.Top)" PathGeometry="{StaticResource ResourceKey=path1}" Duration="0:0:10" RepeatBehavior="Forever" Source="Y" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Ellipse.Triggers>
+                </Ellipse>
+
+                <Ellipse Canvas.Left="10" Canvas.Top="10" Height="15" Width="15" Name="run0">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                            <GradientStop Color="Blue" Offset="0" />
+                            <GradientStop Color="Aqua" Offset="0.2" />
+                            <GradientStop Color="Transparent" Offset="1" />
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                    <Ellipse.Triggers>
+                        <EventTrigger RoutedEvent="Ellipse.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="run0" Storyboard.TargetProperty="(Canvas.Left)" PathGeometry="{StaticResource ResourceKey=path}" Duration="0:0:15" RepeatBehavior="Forever" Source="X" />
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="run0" Storyboard.TargetProperty="(Canvas.Top)" PathGeometry="{StaticResource ResourceKey=path1}" Duration="0:0:10" RepeatBehavior="Forever" Source="Y" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Ellipse.Triggers>
+                </Ellipse>
+
+                <Ellipse Canvas.Left="10" Canvas.Top="10" Height="15" Width="15" Name="run3">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                            <GradientStop Color="Orange" Offset="0" />
+                            <GradientStop Color="Yellow" Offset="0.2" />
+                            <GradientStop Color="Transparent" Offset="1" />
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                    <Ellipse.Triggers>
+                        <EventTrigger RoutedEvent="Ellipse.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="run3" Storyboard.TargetProperty="(Canvas.Left)" PathGeometry="{StaticResource ResourceKey=path1}" Duration="0:0:15" RepeatBehavior="Forever" Source="X" />
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="run3" Storyboard.TargetProperty="(Canvas.Top)" PathGeometry="{StaticResource ResourceKey=path2}" Duration="0:0:10" RepeatBehavior="Forever" Source="Y" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Ellipse.Triggers>
+                </Ellipse>
+
+                <Ellipse Canvas.Left="10" Canvas.Top="10" Height="15" Width="15" Name="run2">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                            <GradientStop Color="ForestGreen" Offset="0" />
+                            <GradientStop Color="#FF102C10" Offset="0.2" />
+                            <GradientStop Color="Transparent" Offset="1" />
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                    <Ellipse.Triggers>
+                        <EventTrigger RoutedEvent="Ellipse.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="run2" Storyboard.TargetProperty="(Canvas.Left)" PathGeometry="{StaticResource ResourceKey=path2}" Duration="0:0:15" RepeatBehavior="Forever" Source="X" />
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="run2" Storyboard.TargetProperty="(Canvas.Top)" PathGeometry="{StaticResource ResourceKey=path2}" Duration="0:0:10" RepeatBehavior="Forever" Source="Y" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Ellipse.Triggers>
+                </Ellipse>
+            </Canvas>
+        </Grid>
+
+        <StackPanel Name="stWait" Visibility="Collapsed" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="Images\WolfRaven.png" Height="200" />
+
+            <Label Name="prWait" Margin="20" FontSize="31">
+                <Label.Triggers>
+                    <EventTrigger RoutedEvent="Label.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <StringAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetName="prWait" Storyboard.TargetProperty="Content" Duration="0:0:2.5">
+                                    <DiscreteStringKeyFrame Value="Wait" KeyTime="0:0:0" />
+                                    <DiscreteStringKeyFrame Value="Wait." KeyTime="0:0:1" />
+                                    <DiscreteStringKeyFrame Value="Wait.." KeyTime="0:0:1.5" />
+                                    <DiscreteStringKeyFrame Value="Wait..." KeyTime="0:0:2" />
+                                </StringAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Label.Triggers>
+            </Label>
+            <Label Name="lMsg" />
+        </StackPanel>
+
+        <Grid Name="grGame" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            
+            <Grid.Background>
+                <ImageBrush ImageSource="Images\Game.jpg" />
+            </Grid.Background>
+
+            <Image Name="imDice" Source="Images\WolfRaven.png" Grid.Row="5" Grid.Column="8" Grid.ColumnSpan="2" Grid.RowSpan="2" Style="{StaticResource imgStyle}" MouseDown="Image_MouseDown" />
+            <Image Name="imOponent" Source="Images\Pl2.png" Grid.Column="1" Grid.Row="1"  />
+            <Image Name="imHero" Source="Images\Pl1.png" Grid.Column="1" Grid.Row="1" />
+
+            <Canvas Width="900" Height="600">
+                <Ellipse Canvas.Left="10" Canvas.Top="10" Height="15" Width="15" Name="runG">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                            <GradientStop Color="Orange" Offset="0" />
+                            <GradientStop Color="Yellow" Offset="0.2" />
+                            <GradientStop Color="Transparent" Offset="1" />
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                    <Ellipse.Triggers>
+                        <EventTrigger RoutedEvent="Ellipse.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="runG" Storyboard.TargetProperty="(Canvas.Left)" PathGeometry="{StaticResource ResourceKey=path}" Duration="0:0:15" RepeatBehavior="Forever" Source="X" />
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="runG" Storyboard.TargetProperty="(Canvas.Top)" PathGeometry="{StaticResource ResourceKey=path}" Duration="0:0:10" RepeatBehavior="Forever" Source="Y" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Ellipse.Triggers>
+                </Ellipse>
+
+                <Ellipse Canvas.Left="10" Canvas.Top="10" Height="15" Width="15" Name="runG1">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                            <GradientStop Color="Blue" Offset="0" />
+                            <GradientStop Color="Navy" Offset="0.2" />
+                            <GradientStop Color="Transparent" Offset="1" />
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                    <Ellipse.Triggers>
+                        <EventTrigger RoutedEvent="Ellipse.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="runG1" Storyboard.TargetProperty="(Canvas.Left)" PathGeometry="{StaticResource ResourceKey=path1}" Duration="0:0:15" RepeatBehavior="Forever" Source="X" />
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="runG1" Storyboard.TargetProperty="(Canvas.Top)" PathGeometry="{StaticResource ResourceKey=path1}" Duration="0:0:10" RepeatBehavior="Forever" Source="Y" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Ellipse.Triggers>
+                </Ellipse>
+
+                <Ellipse Canvas.Left="10" Canvas.Top="10" Height="15" Width="15" Name="runG0">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                            <GradientStop Color="Blue" Offset="0" />
+                            <GradientStop Color="Aqua" Offset="0.2" />
+                            <GradientStop Color="Transparent" Offset="1" />
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                    <Ellipse.Triggers>
+                        <EventTrigger RoutedEvent="Ellipse.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="runG0" Storyboard.TargetProperty="(Canvas.Left)" PathGeometry="{StaticResource ResourceKey=path}" Duration="0:0:15" RepeatBehavior="Forever" Source="X" />
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="runG0" Storyboard.TargetProperty="(Canvas.Top)" PathGeometry="{StaticResource ResourceKey=path1}" Duration="0:0:10" RepeatBehavior="Forever" Source="Y" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Ellipse.Triggers>
+                </Ellipse>
+
+                <Ellipse Canvas.Left="10" Canvas.Top="10" Height="15" Width="15" Name="runG3">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                            <GradientStop Color="Red" Offset="0" />
+                            <GradientStop Color="Yellow" Offset="0.2" />
+                            <GradientStop Color="Transparent" Offset="1" />
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                    <Ellipse.Triggers>
+                        <EventTrigger RoutedEvent="Ellipse.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="runG3" Storyboard.TargetProperty="(Canvas.Left)" PathGeometry="{StaticResource ResourceKey=path1}" Duration="0:0:15" RepeatBehavior="Forever" Source="X" />
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="runG3" Storyboard.TargetProperty="(Canvas.Top)" PathGeometry="{StaticResource ResourceKey=path2}" Duration="0:0:10" RepeatBehavior="Forever" Source="Y" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Ellipse.Triggers>
+                </Ellipse>
+
+                <Ellipse Canvas.Left="10" Canvas.Top="10" Height="15" Width="15" Name="runG2">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                            <GradientStop Color="WhiteSmoke" Offset="0" />
+                            <GradientStop Color="Blue" Offset="0.2" />
+                            <GradientStop Color="Transparent" Offset="1" />
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                    <Ellipse.Triggers>
+                        <EventTrigger RoutedEvent="Ellipse.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="runG2" Storyboard.TargetProperty="(Canvas.Left)" PathGeometry="{StaticResource ResourceKey=path2}" Duration="0:0:15" RepeatBehavior="Forever" Source="X" />
+                                    <DoubleAnimationUsingPath Storyboard.TargetName ="runG2" Storyboard.TargetProperty="(Canvas.Top)" PathGeometry="{StaticResource ResourceKey=path2}" Duration="0:0:10" RepeatBehavior="Forever" Source="Y" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Ellipse.Triggers>
+                </Ellipse>
+            </Canvas>
+        </Grid>
+    </Grid>
+</Window>

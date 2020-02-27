@@ -1,0 +1,46 @@
+D:\Моя папка\Projects\WCF\Exam\Client\Client\bin\Debug\Client.exe.config
+D:\Моя папка\Projects\WCF\Exam\Client\Client\bin\Debug\Client.exe
+D:\Моя папка\Projects\WCF\Exam\Client\Client\bin\Debug\Client.pdb
+D:\Моя папка\Projects\WCF\Exam\Client\Client\obj\Debug\MainWindow.g.cs
+D:\Моя папка\Projects\WCF\Exam\Client\Client\obj\Debug\App.g.cs
+D:\Моя папка\Projects\WCF\Exam\Client\Client\obj\Debug\Client_MarkupCompile.cache
+D:\Моя папка\Projects\WCF\Exam\Client\Client\obj\Debug\Client_MarkupCompile.lref
+D:\Моя папка\Projects\WCF\Exam\Client\Client\obj\Debug\MainWindow.baml
+D:\Моя папка\Projects\WCF\Exam\Client\Client\obj\Debug\Client.g.resources
+D:\Моя папка\Projects\WCF\Exam\Client\Client\obj\Debug\Client.Properties.Resources.resources
+D:\Моя папка\Projects\WCF\Exam\Client\Client\obj\Debug\Client.csproj.GenerateResource.Cache
+D:\Моя папка\Projects\WCF\Exam\Client\Client\obj\Debug\Client.exe
+D:\Моя папка\Projects\WCF\Exam\Client\Client\obj\Debug\Client.pdb
+D:\Моя папка\Projects\WCF\Exam\Client\Client\obj\Debug\Client_Content.g.cs
+D:\Моя папка\Projects\WCF\Exam\Client\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+D:\Моя папка\Projects\WCF\Task_5 (Exam)\Client\Client\bin\Debug\Client.exe.config
+D:\Моя папка\Projects\WCF\Task_5 (Exam)\Client\Client\obj\Debug\Client.exe
+D:\Моя папка\Projects\WCF\Task_5 (Exam)\Client\Client\obj\Debug\Client.pdb
+D:\Моя папка\Projects\WCF\Task_5 (Exam)\Client\Client\bin\Debug\Client.exe
+D:\Моя папка\Projects\WCF\Task_5 (Exam)\Client\Client\bin\Debug\Client.pdb
+D:\Моя папка\Projects\WCF\Task_5 (Exam)\Client\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+D:\Моя папка\Projects\WCF\Task_5 (Exam)\Client\Client\obj\Debug\MainWindow.g.cs
+D:\Моя папка\Projects\WCF\Task_5 (Exam)\Client\Client\obj\Debug\App.g.cs
+D:\Моя папка\Projects\WCF\Task_5 (Exam)\Client\Client\obj\Debug\Client_Content.g.cs
+D:\Моя папка\Projects\WCF\Task_5 (Exam)\Client\Client\obj\Debug\Client_MarkupCompile.cache
+D:\Моя папка\Projects\WCF\Task_5 (Exam)\Client\Client\obj\Debug\Client_MarkupCompile.lref
+D:\Моя папка\Projects\WCF\Task_5 (Exam)\Client\Client\obj\Debug\MainWindow.baml
+D:\Моя папка\Projects\WCF\Task_5 (Exam)\Client\Client\obj\Debug\Client.g.resources
+D:\Моя папка\Projects\WCF\Task_5 (Exam)\Client\Client\obj\Debug\Client.Properties.Resources.resources
+D:\Моя папка\Projects\WCF\Task_5 (Exam)\Client\Client\obj\Debug\Client.csproj.GenerateResource.Cache
+D:\In development\WCF\WCF\Task_5 (Exam)\Client\Client\bin\Debug\Client.exe.config
+D:\In development\WCF\WCF\Task_5 (Exam)\Client\Client\bin\Debug\Client.exe
+D:\In development\WCF\WCF\Task_5 (Exam)\Client\Client\bin\Debug\Client.pdb
+D:\In development\WCF\WCF\Task_5 (Exam)\Client\Client\obj\Debug\Client.csprojAssemblyReference.cache
+D:\In development\WCF\WCF\Task_5 (Exam)\Client\Client\obj\Debug\MainWindow.g.cs
+D:\In development\WCF\WCF\Task_5 (Exam)\Client\Client\obj\Debug\App.g.cs
+D:\In development\WCF\WCF\Task_5 (Exam)\Client\Client\obj\Debug\Client_Content.g.cs
+D:\In development\WCF\WCF\Task_5 (Exam)\Client\Client\obj\Debug\Client_MarkupCompile.cache
+D:\In development\WCF\WCF\Task_5 (Exam)\Client\Client\obj\Debug\Client_MarkupCompile.lref
+D:\In development\WCF\WCF\Task_5 (Exam)\Client\Client\obj\Debug\MainWindow.baml
+D:\In development\WCF\WCF\Task_5 (Exam)\Client\Client\obj\Debug\Client.g.resources
+D:\In development\WCF\WCF\Task_5 (Exam)\Client\Client\obj\Debug\Client.Properties.Resources.resources
+D:\In development\WCF\WCF\Task_5 (Exam)\Client\Client\obj\Debug\Client.csproj.GenerateResource.cache
+D:\In development\WCF\WCF\Task_5 (Exam)\Client\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
+D:\In development\WCF\WCF\Task_5 (Exam)\Client\Client\obj\Debug\Client.exe
+D:\In development\WCF\WCF\Task_5 (Exam)\Client\Client\obj\Debug\Client.pdb

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8976/Service?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8976/Service?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8976/Service?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Host" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService_AddClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddClient" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetBoard_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBoard" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetBoard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBoardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_Move_InputMessage">
+    <wsdl:part name="parameters" element="tns:Move" />
+  </wsdl:message>
+  <wsdl:message name="IService_Move_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MoveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_OponentPos_InputMessage">
+    <wsdl:part name="parameters" element="tns:OponentPos" />
+  </wsdl:message>
+  <wsdl:message name="IService_OponentPos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OponentPosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CheckCl_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckCl" />
+  </wsdl:message>
+  <wsdl:message name="IService_CheckCl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckClResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CheckMove_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckMove" />
+  </wsdl:message>
+  <wsdl:message name="IService_CheckMove_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckMoveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CheckIfWon_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckIfWon" />
+  </wsdl:message>
+  <wsdl:message name="IService_CheckIfWon_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckIfWonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DelClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:DelClient" />
+  </wsdl:message>
+  <wsdl:message name="IService_DelClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DelClientResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService">
+    <wsdl:operation name="AddClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddClient" message="tns:IService_AddClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddClientResponse" message="tns:IService_AddClient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBoard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetBoard" message="tns:IService_GetBoard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetBoardResponse" message="tns:IService_GetBoard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Move">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Move" message="tns:IService_Move_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/MoveResponse" message="tns:IService_Move_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OponentPos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/OponentPos" message="tns:IService_OponentPos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/OponentPosResponse" message="tns:IService_OponentPos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckCl">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CheckCl" message="tns:IService_CheckCl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CheckClResponse" message="tns:IService_CheckCl_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckMove">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CheckMove" message="tns:IService_CheckMove_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CheckMoveResponse" message="tns:IService_CheckMove_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckIfWon">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CheckIfWon" message="tns:IService_CheckIfWon_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CheckIfWonResponse" message="tns:IService_CheckIfWon_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DelClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DelClient" message="tns:IService_DelClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DelClientResponse" message="tns:IService_DelClient_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IService" type="tns:IService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="AddClient">
+      <soap12:operation soapAction="http://tempuri.org/IService/AddClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBoard">
+      <soap12:operation soapAction="http://tempuri.org/IService/GetBoard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Move">
+      <soap12:operation soapAction="http://tempuri.org/IService/Move" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OponentPos">
+      <soap12:operation soapAction="http://tempuri.org/IService/OponentPos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckCl">
+      <soap12:operation soapAction="http://tempuri.org/IService/CheckCl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckMove">
+      <soap12:operation soapAction="http://tempuri.org/IService/CheckMove" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIfWon">
+      <soap12:operation soapAction="http://tempuri.org/IService/CheckIfWon" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DelClient">
+      <soap12:operation soapAction="http://tempuri.org/IService/DelClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="NetTcpBinding_IService" binding="tns:NetTcpBinding_IService">
+      <soap12:address location="net.tcp://localhost:6497/" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:6497/</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>UserPC\User</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

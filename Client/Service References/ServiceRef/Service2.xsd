@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Host" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Host" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfGameGrid">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GameGrid" nillable="true" type="tns:GameGrid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGameGrid" nillable="true" type="tns:ArrayOfGameGrid" />
+  <xs:complexType name="GameGrid">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CrdCol" type="xs:int" />
+      <xs:element minOccurs="0" name="CrdRow" type="xs:int" />
+      <xs:element minOccurs="0" name="MoveType" type="tns:GridType" />
+      <xs:element minOccurs="0" name="Num" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GameGrid" nillable="true" type="tns:GameGrid" />
+  <xs:simpleType name="GridType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Red" />
+      <xs:enumeration value="BrownStart" />
+      <xs:enumeration value="BrownEnd" />
+      <xs:enumeration value="NavyStart" />
+      <xs:enumeration value="NavyEnd" />
+      <xs:enumeration value="Normal" />
+      <xs:enumeration value="StartEnd" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="GridType" nillable="true" type="tns:GridType" />
+</xs:schema>
